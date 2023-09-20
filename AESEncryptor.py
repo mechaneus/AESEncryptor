@@ -15,13 +15,6 @@ import codecs
 
 __version__ = '0.1'
 
-# Function that prints the help message.
-def usage():
-    print("Usage:")
-    print("Encrypt function list: %s -fl <function list filename>" % sys.argv[0])
-    print("Encrypt payload: %s -pf <raw payload file>" % sys.argv[0])
-    print("Encrypt string list: %s -s <string list filename>" % sys.argv[0])
-
 # Take a file with a payload in bytes .bin format, encrypt it and print the result in C variable declaration format.
 def encryptPayload(payloadFilename, KEY):
     print("[!] Encrypting payload...")
@@ -75,7 +68,7 @@ def encryptFunctionList(stringListFilename, KEY, decryptVerify):
             encryptedStringItem = cipher.encrypt(pad(bytes(stringItem, encoding='utf-8'), AES.block_size))
             
             # If decryption verification is enabled, decrypt all strings and print them in byte format.
-            if decryptVerify == True or decryptVerify == "true":
+            if decryptVerify == "True" or decryptVerify == "true":
                 iv = 16 * b'\x00'
                 decrypt_cipher = AES.new(hashlib.sha256(KEY).digest(), AES.MODE_CBC, iv)
                 plain_text = decrypt_cipher.decrypt(encryptedStringItem)
@@ -95,7 +88,7 @@ globalKEY = ""
 # Check if a key was provided. If not, generate a random key.
 def manageKey(KEY):
     if KEY:
-        KEY = arguments.KEY.encode('utf-8')
+        KEY = KEY.encode('utf-8')
         print(f"[!] The plaintext key provided is: {KEY.decode('utf-8')}")      
     else:
         # Two ways to get a random key
