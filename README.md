@@ -9,7 +9,7 @@
                                                        __/ | |
                                                       |___/|_|
 
-# AES payload and function name encryptor
+# A simple AES payload and function name encryptor
 
 **All output will be in C/C++ variable declaration format.**
 ## Usage
