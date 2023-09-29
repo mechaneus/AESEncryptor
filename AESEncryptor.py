@@ -58,7 +58,8 @@ def encryptFunctionList(stringListFilename, KEY, decryptVerify):
         
     # If the file is ok, traverse it.
     for stringItem in stringList:      
-        try:        
+        try:    
+            # Add a C string termination character
             stringItem +="\x00"
             # Generate a simple IV
             iv = 16 * b'\x00'
